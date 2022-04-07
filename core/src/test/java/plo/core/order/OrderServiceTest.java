@@ -1,20 +1,27 @@
 package plo.core.order;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import plo.core.AppConfig;
 import plo.core.Order.Order;
 import plo.core.Order.OrderService;
-import plo.core.Order.OrderServiceImpl;
 import plo.core.member.Grade;
 import plo.core.member.Member;
 import plo.core.member.MemberService;
-import plo.core.member.MemberServiceImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl(memberRepository);
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void createMember(){

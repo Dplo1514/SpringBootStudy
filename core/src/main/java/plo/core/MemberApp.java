@@ -7,7 +7,10 @@ import plo.core.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl(memberRepository);
+        //appconfig에서 추상체를 할당받으면 appconfig에서 할당됐던 구현체도 리턴된다.
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+
         Member memberA = new Member(1L, "memberA", Grade.VIP);
         memberService.join(memberA);
 

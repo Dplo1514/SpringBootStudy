@@ -1,16 +1,23 @@
 package plo.core.memeber;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import plo.core.AppConfig;
 import plo.core.member.Grade;
 import plo.core.member.Member;
 import plo.core.member.MemberService;
-import plo.core.member.MemberServiceImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl(memberRepository);
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join(){
