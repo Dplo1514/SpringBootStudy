@@ -1,11 +1,11 @@
 package plo.core.Order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import plo.core.discount.DiscountPolicy;
-import plo.core.discount.RateDiscountPolicy;
 import plo.core.member.Member;
 import plo.core.member.MemberRepository;
-import plo.core.member.MemoryMemberRepository;
-
+@Component
 public class OrderServiceImpl implements OrderService{
     /*
         클라이언트인 OrderServiceImpl은 추상클래스(interface)인 DiscountPolicy뿐만 아니라
@@ -31,7 +31,8 @@ public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-
+    //OrderServiceImpl을 springContainer에서 호출 ->
+    //new OrderServiceImpl(MemberRepository , DiscountPolicy)로 스프링 컨테이너에서 OrderServiceImpl을 생성해 의존성을 주입한다.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
@@ -43,5 +44,10 @@ public class OrderServiceImpl implements OrderService{
         int discountPrice = discountPolicy.discount(memeber, itemPrice);
 
         return new Order(memberId , itemName , itemPrice , discountPrice);
+    }
+
+    //싱글톤 테스트
+    public MemberRepository getmemberRepository() {
+        return memberRepository;
     }
 }
