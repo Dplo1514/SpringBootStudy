@@ -1,10 +1,13 @@
 package plo.core.Order;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import plo.core.annotation.MainDiscountPolicy;
 import plo.core.discount.DiscountPolicy;
 import plo.core.member.Member;
 import plo.core.member.MemberRepository;
+
 @Component
 public class OrderServiceImpl implements OrderService{
     /*
@@ -31,13 +34,21 @@ public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-    //OrderServiceImpl을 springContainer에서 호출 ->
-    //new OrderServiceImpl(MemberRepository , DiscountPolicy)로 스프링 컨테이너에서 OrderServiceImpl을 생성해 의존성을 주입한다.
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository , @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
+
+    //OrderServiceImpl을 springContainer에서 호출 ->
+    //new OrderServiceImpl(MemberRepository , DiscountPolicy)로 스프링 컨테이너에서 OrderServiceImpl을 생성해 의존성을 주입한다.
+
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

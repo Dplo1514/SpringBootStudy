@@ -1,10 +1,12 @@
 package plo.core.discount;
 
 import org.springframework.stereotype.Component;
+import plo.core.annotation.MainDiscountPolicy;
 import plo.core.member.Grade;
 import plo.core.member.Member;
 
 @Component
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;

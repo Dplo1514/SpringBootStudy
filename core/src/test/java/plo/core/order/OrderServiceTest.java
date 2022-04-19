@@ -20,7 +20,7 @@ public class OrderServiceTest {
     public void beforeEach(){
         AppConfig appConfig = new AppConfig();
         memberService = appConfig.memberService();
-//        orderService = appConfig.orderService();
+        orderService = appConfig.orderService();
     }
 
     @Test
@@ -28,9 +28,7 @@ public class OrderServiceTest {
         long memberId = 1L;
         Member member = new Member(memberId, "spring", Grade.VIP);
         memberService.join(member);
-
         Order order = orderService.createOrder(memberId, "itemA", 10000);
-
         assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
 
