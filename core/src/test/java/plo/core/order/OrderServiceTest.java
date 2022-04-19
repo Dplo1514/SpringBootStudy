@@ -20,7 +20,7 @@ public class OrderServiceTest {
     public void beforeEach(){
         AppConfig appConfig = new AppConfig();
         memberService = appConfig.memberService();
-        orderService = appConfig.orderService();
+//        orderService = appConfig.orderService();
     }
 
     @Test
@@ -33,6 +33,7 @@ public class OrderServiceTest {
 
         assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
+
 
 //    @Test
 //    void filedInjectionTest(){

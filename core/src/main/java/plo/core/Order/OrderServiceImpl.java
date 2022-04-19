@@ -33,6 +33,7 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy;
     //OrderServiceImpl을 springContainer에서 호출 ->
     //new OrderServiceImpl(MemberRepository , DiscountPolicy)로 스프링 컨테이너에서 OrderServiceImpl을 생성해 의존성을 주입한다.
+
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
