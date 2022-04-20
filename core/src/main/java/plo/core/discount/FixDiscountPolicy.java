@@ -1,6 +1,5 @@
 package plo.core.discount;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import plo.core.member.Grade;
 import plo.core.member.Member;
